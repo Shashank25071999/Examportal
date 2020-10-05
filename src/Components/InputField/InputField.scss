@@ -1,0 +1,25 @@
+.InputField{
+    display: flex;
+    flex-direction: column;
+    
+    align-items: flex-start ;
+    
+    &__label{
+        display: block;
+        font-size: large;
+        
+        font-weight: 600;
+        text-transform: uppercase;
+        margin: .2rem 0;
+        padding: 0;
+    }
+
+    &__input{
+        width: 100%;
+        padding: .5rem;
+    }
+
+    &__hinttext{
+        margin: 0;
+    }
+}

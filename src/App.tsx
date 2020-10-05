@@ -1,26 +1,51 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Formik from 'formik';
+import './App.scss';
+import Login from './Containers/Login/Login';
+import SignUp from './Containers/Signup/SignUp';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Dashboard from './Containers/Dashboard/Dashboard';
+import { observer } from 'mobx-react';
+import userStore from './Store/User/User';
+import { Provider } from 'mobx-react';
+const stores = {
+  userStore
 }
 
-export default App;
+class App extends React.Component {
+
+
+  render() {
+    const token = localStorage.getItem("authtoken");
+    return (
+      <Provider {...stores}>
+        <div className="App">
+          <Router>
+            <Switch>
+              <Route path="/"
+                component={token ? Dashboard : Login}
+                exact>
+
+              </Route>
+              <Route path={"/signup"}
+                component={SignUp}
+                exact>
+                <SignUp></SignUp>
+              </Route>
+              <Route path={"/login"}
+                component={Login}
+                exact>
+              </Route>
+
+            </Switch>
+
+
+          </Router>
+
+
+        </div>
+      </Provider>
+    );
+  }
+}
+export default observer(App);
