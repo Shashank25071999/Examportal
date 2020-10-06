@@ -32,7 +32,7 @@ const Login: React.FunctionComponent<Props> = (Props) => {
                         
                         fire.auth().currentUser?.getIdToken(true).then(token=>{
                             localStorage.setItem("authtoken",token);
-                            history.replace('/');
+                            history.replace('/dashboard');
                             // Axios.get("https://examportalreactapp.firebaseio.com/Users/.json?auth="+token,).then(data=>{
                             //     console.log(data);
                             // });

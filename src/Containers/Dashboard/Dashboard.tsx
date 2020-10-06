@@ -15,9 +15,10 @@ class Dashboard extends React.Component<Props>{
     //     theuserobject.fetchuser();
         
     // }, []);
-  async  componentDidMount(){
+    
+  componentDidMount(){
         
-        await  this.props.userStore.fetchuser();
+        this.props.userStore.fetchuser();
         console.log(this.props.userStore.userlist);
         
     }
@@ -31,10 +32,14 @@ render(){
             {
                 this.props.userStore.userlist.map(user=>user.name)
             }
+            {
+                this.props.userStore.name
+            }
         
             <button onClick={() => {
 
                 localStorage.clear();
+
             }}>Logout</button>
         </div>
     );

@@ -6,7 +6,9 @@ import { User } from '../../Modal/User/User';
 
   class UserStore{
     @observable userlist:User[]=[];
+    @observable name!:string;
 
+    
 
     constructor(){
         User._store=this;
@@ -25,9 +27,11 @@ import { User } from '../../Modal/User/User';
             runInAction(()=>{
                 for(var i in res.data){
                     const user=User.fromJson(res.data[i]);
-                    userli.push(user);
+                    this.userlist.push(user);
                 }     
-               this.userlist=userli;
+               
+               this.name="shashank sahai state updated";
+               console.log(this.name);
                console.log(this.userlist.length);
             });
             
